@@ -159,11 +159,11 @@ function Set-SilicaIDm {
    #Parameter validation
    $IDm = $IDm.ToLower() -replace '[^0-9a-f]', ''
    if ($IDm.Length -ne 16 -or -not $IDm -match '^[0-9a-f]{16}$') {
-      throw [System.ArgumentException]::new('IDm must be a 16-character hexadecimal string.')
+      Write-Error -Exception ([System.ArgumentException]::new('IDm must be a 16-character hexadecimal string.'))
    }
    $PMm = $PMm.ToLower() -replace '[^0-9a-f]', ''
    if ($PMm.Length -ne 16 -or -not $PMm -match '^[0-9a-f]{16}$') {
-      throw [System.ArgumentException]::new('PMm must be a 16-character hexadecimal string.')
+      Write-Error -Exception ([System.ArgumentException]::new('PMm must be a 16-character hexadecimal string.'))
    }
 
    $service = 0xffff
@@ -189,13 +189,13 @@ function Set-SilicaSystemCode {
    #Parameter validation
    $syscode = (-join $SystemCode).ToLower() -replace '[^0-9a-f]', ''
    if ($syscode.Length % 2 -ne 0) {
-      throw [System.ArgumentException]::new('System codes must be in 2-byte pairs as a hexadecimal string.')
+      Write-Error -Exception ([System.ArgumentException]::new('System codes must be in 2-byte pairs as a hexadecimal string.'))
    }
    if ($syscode.Length -eq 0) {
-      throw [System.ArgumentException]::new('At least one system code must be provided.')
+      Write-Error -Exception ([System.ArgumentException]::new('At least one system code must be provided.'))
    }
    if ($syscode.Length / 4 -gt $MAX_SYSTEM) {
-      throw [System.ArgumentException]::new("A maximum of $MAX_SYSTEM system codes can be set.")
+      Write-Error -Exception ([System.ArgumentException]::new("A maximum of $MAX_SYSTEM system codes can be set."))
    }
 
    $service = 0xffff
@@ -222,13 +222,13 @@ function Set-SilicaServiceCode {
    #Parameter validation
    $sercode = (-join $ServiceCode).ToLower() -replace '[^0-9a-f]', ''
    if ($sercode.Length % 2 -ne 0) {
-      throw [System.ArgumentException]::new('Service codes must be in 2-byte pairs as a hexadecimal string.')
+      Write-Error -Exception ([System.ArgumentException]::new('Service codes must be in 2-byte pairs as a hexadecimal string.'))
    }
    if ($sercode.Length -eq 0) {
-      throw [System.ArgumentException]::new('At least one service code must be provided.')
+      Write-Error -Exception ([System.ArgumentException]::new('At least one service code must be provided.'))
    }
    if ($sercode.Length / 4 -gt $MAX_SERVICE) {
-      throw [System.ArgumentException]::new("A maximum of $MAX_SERVICE service codes can be set.")
+      Write-Error -Exception ([System.ArgumentException]::new("A maximum of $MAX_SERVICE service codes can be set."))
    }
 
    $service = 0xffff
