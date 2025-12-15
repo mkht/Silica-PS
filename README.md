@@ -41,6 +41,7 @@ Set-SilicaServiceCode '000B', '002B'  # 16進数4桁(2バイト)の文字列(最
 ```
 
 ## 使用ライブラリ
-- felicalb by Takuya Murakami - BSD License  
+- felicalib by Takuya Murakami - BSD License  
   http://felicalib.tmurakam.org/index.html
+
 
