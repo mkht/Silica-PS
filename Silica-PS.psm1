@@ -49,6 +49,9 @@ function Read-FelicaBlock {
    [CmdletBinding()]
    [OutputType([byte[]])]
    param(
+      [Parameter()]
+      [ushort]$SystemCode = [SystemCode]::Any,
+
       [Parameter(Mandatory = $true)]
       [int]$ServiceCode,
 
@@ -61,7 +64,7 @@ function Read-FelicaBlock {
          Write-Verbose 'Initializing PaSoRi card reader...'
          $felica = [FelicaLib.Felica]::new()
          Write-Verbose 'Polling Felica card...'
-         $felica.Polling([SystemCode]::Any)
+         $felica.Polling($SystemCode)
          Write-Verbose 'Finished polling.'
       }
       catch {
@@ -96,6 +99,9 @@ function Read-FelicaBlock {
 function Write-FelicaBlock {
    [CmdletBinding()]
    param(
+      [Parameter()]
+      [ushort]$SystemCode = [SystemCode]::Any,
+
       [Parameter(Mandatory = $true)]
       [int]$ServiceCode,
 
@@ -112,7 +118,7 @@ function Write-FelicaBlock {
          Write-Verbose 'Initializing PaSoRi card reader...'
          $felica = [FelicaLib.Felica]::new()
          Write-Verbose 'Polling Felica card...'
-         $felica.Polling([SystemCode]::Any)
+         $felica.Polling($SystemCode)
          Write-Verbose 'Finished polling.'
       }
       catch {
